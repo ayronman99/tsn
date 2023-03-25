@@ -12,6 +12,7 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { Box, Card, CardContent, CardHeader, CardMedia, Grid, Paper, Tooltip } from "@mui/material";
 import Container from "@mui/material/Container";
+import LoadingPost from "../components/LoadingPost";
 
 
 const PostPage = () => {
@@ -28,18 +29,14 @@ const PostPage = () => {
         queryFn: () => axsFetchHandlerRQHook(`https://dummyapi.io/data/v1/post/${postId}/comment`)
     });
 
-    if (isLoading) {
-        return (
-            <p>Please wait...</p>
-        )
-    }
-    else {
-        return (
-            <Container maxWidth="md" sx={{  paddingY: 1, display: "flex", alignItems: "center", justifyContent: "flex-start", flexDirection: "column" }}>
+    return (
+        <Container maxWidth="md" sx={{ paddingY: 1, display: "flex", alignItems: "center", justifyContent: "flex-start", flexDirection: "column" }}>
+            {isLoading ?
+                <LoadingPost />
+                :
                 <Grid container justifyContent="center" alignItems="center">
                     <Grid item xs={12} md={8}>
                         <Paper elevation={6}>
-
                             <Card variant="outlined">
                                 <CardHeader
                                     avatar={
@@ -69,10 +66,10 @@ const PostPage = () => {
                                 </CardContent>
                             </Card>
 
-                            <Box sx={{ marginTop: 1, border: "2px solid blue"}}>
+                            <Box sx={{ marginTop: 1 }}>
                                 {commentsData?.length !== 0 ? (
                                     commentsData?.map((commentItems) => (
-                                        <List sx={{ width: "100%", border: "2px solid red"}} key={commentItems?.id}>
+                                        <List sx={{ width: "100%" }} key={commentItems?.id}>
                                             <ListItem alignItems="flex-start">
                                                 <ListItemAvatar>
                                                     <Avatar alt={commentItems?.owner?.firstName} src={commentItems?.owner.picture} />
@@ -103,14 +100,9 @@ const PostPage = () => {
                             </Box>
                         </Paper>
                     </Grid>
-
-                </Grid>
-
-            </Container>
-        );
-
-    }
-
+                </Grid>}
+        </Container>
+    );
 }
 
 export default PostPage;
