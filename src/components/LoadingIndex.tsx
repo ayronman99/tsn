@@ -31,8 +31,6 @@ const Loading = () => {
                     </CardActions>
                 </Card>
             </Grid>;
-
-            console.log(i < initPostCount);
             initPostContainer.push(itemToPush);
         }
     }

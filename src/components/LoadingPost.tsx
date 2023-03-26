@@ -35,7 +35,26 @@ const LoadingPost = () => (
                 </Card>
 
                 <Box sx={{ marginTop: 1 }}>
-                    <Skeleton variant="rectangular" sx={{ height: 200 }} />
+                    <Card variant="outlined">
+                    <CardHeader
+                        avatar={
+                            <Skeleton animation="wave" variant="circular" width={40} height={40} />
+                        }
+                        title={
+                            <Skeleton
+                                animation="wave"
+                                height={10}
+                                width={69}
+                                style={{ marginBottom: 6 }}
+                            />
+
+                        }
+                        subheader={
+                            <Skeleton animation="wave" height={10} width="40%" />
+                        }
+
+                    />
+                </Card>
                 </Box>
             </Paper>
         </Grid>
