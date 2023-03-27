@@ -1,5 +1,10 @@
+import pageTitle from "../hooks/pageTitle.hook";
 
 const About = () => {
+
+    pageTitle("About Us");
+
+
     return (
         <div>
             <h1>

@@ -1,22 +1,23 @@
 
 import axsFetchHandlerRQHook from "../hooks/axiosFetchRQ.hook";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import pageTitle from "../hooks/pageTitle.hook";
+
 //MUI BELOW
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
-import { Box, Card, CardContent, CardHeader, CardMedia, Grid, Paper, Tooltip } from "@mui/material";
+import { Button, Box, Card, CardContent, CardHeader, CardMedia, Grid, Paper, Tooltip } from "@mui/material";
 import Container from "@mui/material/Container";
 import LoadingPost from "../components/LoadingPost";
-
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const PostPage = () => {
     const { postId } = useParams();
+    const navigator = useNavigate();
 
     const { data: idPostData, isLoading } = useQuery<PostsDataTypes, ErrorConstructor>({
         queryKey: ['idPostData', `${postId}`],
@@ -29,14 +30,19 @@ const PostPage = () => {
         queryFn: () => axsFetchHandlerRQHook(`https://dummyapi.io/data/v1/post/${postId}/comment`)
     });
 
+    pageTitle(`${idPostData?.text !== undefined ? idPostData?.text : "Post Page"}`);
+
     const formattedDate = idPostData?.publishDate;
     return (
-        <Container maxWidth="md" sx={{ paddingY: 1, display: "flex", alignItems: "center", justifyContent: "flex-start", flexDirection: "column" }}>
+        <Container maxWidth="lg" sx={{ paddingY: 1, display: "flex", alignItems: "center", justifyContent: "flex-start", flexDirection: "column" }}>
+            <Button onClick={() => navigator(-1)} sx={{position: "absolute", left: {xs: 0, md: 20}}}>
+               <ArrowBackIcon />
+            </Button>
             {isLoading ?
                 <LoadingPost />
                 :
-                <Grid container justifyContent="center" alignItems="center">
-                    <Grid item xs={12} md={8}>
+                <Grid container justifyContent="center" alignItems="center" sx={{marginTop: {xs: 5 ,md: 0}}}>
+                    <Grid item xs={12} md={8} lg={10}>
                         <Paper elevation={6}>
                             <Card sx={{ boxShadow: "none" }}>
                                 <CardHeader

@@ -4,7 +4,7 @@ import { indexStyles } from "../styles/IndexStyles";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import LoadingIndex from "../components/LoadingIndex";
-
+import pageTitle from "../hooks/pageTitle.hook";    
 
 const Index = () => {
     const { data: postsData, isLoading } = useQuery<PostsDataTypes[], ErrorConstructor>({
@@ -12,6 +12,8 @@ const Index = () => {
         queryFn: () => axsFetchHandlerRQHook("https://dummyapi.io/data/v1/post?limit=20"),
         staleTime: 30000
     });
+
+    pageTitle("TSN | Home");
     
     const { classes } = indexStyles();
     

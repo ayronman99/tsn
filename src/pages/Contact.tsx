@@ -1,5 +1,9 @@
+import pageTitle from "../hooks/pageTitle.hook";
 
 const Contact = () => {
+    
+    pageTitle("Contact Us");
+
     return (
         <div>
             <h1>
