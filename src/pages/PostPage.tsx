@@ -29,6 +29,7 @@ const PostPage = () => {
         queryFn: () => axsFetchHandlerRQHook(`https://dummyapi.io/data/v1/post/${postId}/comment`)
     });
 
+    const formattedDate = idPostData?.publishDate;
     return (
         <Container maxWidth="md" sx={{ paddingY: 1, display: "flex", alignItems: "center", justifyContent: "flex-start", flexDirection: "column" }}>
             {isLoading ?
@@ -45,7 +46,7 @@ const PostPage = () => {
                                         </Tooltip>
                                     }
                                     title={idPostData?.owner.firstName}
-                                    subheader={idPostData?.publishDate}
+                                    subheader={formattedDate?.substring(0, formattedDate.indexOf("T"))}
                                 />
 
                                 <CardMedia

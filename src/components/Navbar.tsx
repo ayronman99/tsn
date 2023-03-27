@@ -1,10 +1,13 @@
 import { useState, MouseEvent, useContext } from 'react';
 import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Avatar, Button, Tooltip, MenuItem, Switch } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
-import AdbIcon from '@mui/icons-material/Adb';
+import Groups2Icon from '@mui/icons-material/Groups2';
 import { Link } from "react-router-dom";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { ThemeContextType } from '../@types/theme';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
+
 
 const pages = ['Home', 'About', 'Contact'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -12,7 +15,7 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const Navbar = () => {
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
-    const { changeTheme } = useContext(ThemeContext) as ThemeContextType;
+    const { isDarkMode, changeTheme } = useContext(ThemeContext) as ThemeContextType;
 
     const handleOpenNavMenu = (event: MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
@@ -33,9 +36,6 @@ const Navbar = () => {
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-                    <Switch onClick={changeTheme} />
-
                     <Typography
                         variant="h6"
                         noWrap
@@ -44,14 +44,20 @@ const Navbar = () => {
                         sx={{
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
+                            alignItems: "cemter",
                             fontFamily: 'monospace',
                             fontWeight: 700,
                             letterSpacing: '.3rem',
-                            color: 'inherit',
+                            color: '#fff',
                             textDecoration: 'none',
+                            "&:hover": {
+                                color: "#fff"
+                            }
                         }}
                     >
-                        LOGO
+                        
+                    <Groups2Icon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                        TSN
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -85,14 +91,13 @@ const Navbar = () => {
                         >
                             {pages.map((page) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Link to={`/${page.toLowerCase() !== "home"  ? page.toLowerCase() : ""}`}>
+                                    <Link to={`/${page.toLowerCase() !== "home" ? page.toLowerCase() : ""}`}>
                                         <Typography textAlign="center">{page}</Typography>
                                     </Link>
                                 </MenuItem>
                             ))}
                         </Menu>
                     </Box>
-                    <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                     <Typography
                         variant="h5"
                         noWrap
@@ -101,20 +106,25 @@ const Navbar = () => {
                         sx={{
                             mr: 2,
                             display: { xs: 'flex', md: 'none' },
+                            alignItems: "center",
                             flexGrow: 1,
                             fontFamily: 'monospace',
                             fontWeight: 700,
                             letterSpacing: '.3rem',
-                            color: 'inherit',
+                            color: '#fff',
                             textDecoration: 'none',
+                            "&:hover": {
+                                color: "#fff"
+                            }
                         }}
                     >
-                        LOGO
+                        <Groups2Icon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+                        TSN
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
-                            <Link to={`/${page.toLowerCase() !== "home"  ? page.toLowerCase() : ""}`} key={page} style={{textDecoration: "none"}}>
-                                <Button                                    
+                            <Link to={`/${page.toLowerCase() !== "home" ? page.toLowerCase() : ""}`} key={page} style={{ textDecoration: "none" }}>
+                                <Button
                                     onClick={handleCloseNavMenu}
                                     sx={{ my: 2, color: 'white', display: 'block' }}
                                 >
@@ -124,10 +134,14 @@ const Navbar = () => {
                         ))}
                     </Box>
 
-                    <Box sx={{ flexGrow: 0 }}>
+                    <Box sx={{ flexGrow: 0, display: "flex", alignItems: "center" }}>
+                        <Box sx={{ paddingX: 2, display: "flex", alignItems: "center" }}>
+                            {isDarkMode ? <DarkModeIcon /> : <LightModeIcon />}
+                            <Switch onClick={changeTheme} />
+                        </Box>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                <Avatar alt="Remy Sharp" src="https://play-lh.googleusercontent.com/5LIMaa7WTNy34bzdFhBETa2MRj7mFJZWb8gCn_uyxQkUvFx_uOFCeQjcK16c6WpBA3E" />
                             </IconButton>
                         </Tooltip>
                         <Menu

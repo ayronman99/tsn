@@ -11,13 +11,14 @@ const Index = () => {
         queryKey: ['postsData'],
         queryFn: () => axsFetchHandlerRQHook("https://dummyapi.io/data/v1/post?limit=20"),
         staleTime: 30000
-    })
+    });
+    
     const { classes } = indexStyles();
     
         return (
             <main className={classes.root}>
                 <Paper className={classes.paper}>
-                    <Typography variant="h1">
+                    <Typography variant="h1" sx={{ fontSize: "2.5rem", paddingY: 2 }}>
                         The Social Network
                     </Typography>
                     {isLoading ?
