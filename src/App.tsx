@@ -6,8 +6,6 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import PostPage from "./pages/PostPage";
 import ThemeProviderMain from "./contexts/ThemeContext";
-import LoadingIndex from "./components/LoadingIndex";
-import LoadingPost from "./components/LoadingPost";
 
 function App() {
 
@@ -17,7 +15,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/about" element={<LoadingPost />} />
+            <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/p/:postId" element={<PostPage />} />
           </Routes>

@@ -8,7 +8,7 @@ const Loading = () => {
         const initPostCount = 9;
 
         for (let i = 0; i < initPostCount; i++) {
-            const itemToPush = <Grid item xs={12} md={4} lg={3} xl={2} sx={{ width: "300px", marginBottom: "1rem" }}>
+            const itemToPush = <Grid item xs={12} md={4} lg={3} xl={2} sx={{ width: "300px", marginBottom: "1rem" }} key={i}>
                 <Card sx={{ height: "100%" }}>
                     <CardMedia sx={{ paddingX: 1 }}>
                         <Skeleton variant="rectangular" height={200} />
