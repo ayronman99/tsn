@@ -40,7 +40,7 @@ const Navbar = () => {
                         variant="h6"
                         noWrap
                         component="a"
-                        href="/"
+                        href="/tsn"
                         sx={{
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
@@ -55,8 +55,8 @@ const Navbar = () => {
                             }
                         }}
                     >
-                        
-                    <Groups2Icon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+
+                        <Groups2Icon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                         TSN
                     </Typography>
 

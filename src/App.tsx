@@ -14,7 +14,7 @@ function App() {
         <div className="App">
           <Navbar />
           <Routes>
-            <Route path="/" element={<Index />} />
+            <Route path="/tsn" element={<Index />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/p/:postId" element={<PostPage />} />
