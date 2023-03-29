@@ -91,7 +91,7 @@ const Navbar = () => {
                         >
                             {pages.map((page) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Link to={`/${page.toLowerCase() !== "home" ? page.toLowerCase() : ""}`}>
+                                    <Link to={`/${page.toLowerCase() !== "home" ? page.toLowerCase() : "tsn"}`}>
                                         <Typography textAlign="center">{page}</Typography>
                                     </Link>
                                 </MenuItem>
@@ -102,7 +102,7 @@ const Navbar = () => {
                         variant="h5"
                         noWrap
                         component="a"
-                        href=""
+                        href="/tsn"
                         sx={{
                             mr: 2,
                             display: { xs: 'flex', md: 'none' },
