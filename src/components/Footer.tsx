@@ -1,6 +1,7 @@
 import { Box, Container, Grid, Link, Paper, Stack, Typography } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import Groups2Icon from '@mui/icons-material/Groups2';
+import { Link as RouterLink } from "react-router-dom";
 
 const Footer = () => {
     return (
@@ -38,15 +39,19 @@ const Footer = () => {
                                 </Stack>
                                 <Stack spacing={2} width="100%" display="flex" alignItems="center">
                                     <Typography variant="h6" component="p">Company</Typography>
-                                    <Link href="/tsn/about" underline="none" sx={{ color: "#000", "&:hover": { color: "grey" } }}>
-                                        About Us
-                                    </Link>
+                                    <RouterLink to="/tsn/about">
+                                        <Typography sx={{ color: "#000", "&:hover": { color: "grey" } }}>
+                                            About Us
+                                        </Typography>
+                                    </RouterLink>
                                     <Link href="#footer" underline="none" sx={{ color: "#000", "&:hover": { color: "grey" } }}>
                                         Careers
                                     </Link>
-                                    <Link href="/tsn/contact" underline="none" sx={{ color: "#000", "&:hover": { color: "grey" } }}>
-                                        Contact
-                                    </Link>
+                                    <RouterLink to="/tsn/contact">
+                                        <Typography sx={{ color: "#000", "&:hover": { color: "grey" } }}>
+                                            Contact
+                                        </Typography>
+                                    </RouterLink>
                                 </Stack>
                                 <Stack spacing={2} width="100%" display="flex" alignItems="center">
                                     <Typography variant="h6" component="p">Resources</Typography>
@@ -75,7 +80,7 @@ const Footer = () => {
                     display="flex"
                     justifyContent="space-between"
                     padding={2}
-                    sx={{flexDirection: {xs: "column", md: "row"}}}
+                    sx={{ flexDirection: { xs: "column", md: "row" } }}
                 >
                     <Box
                         component="div"
