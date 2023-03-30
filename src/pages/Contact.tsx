@@ -3,11 +3,15 @@ import pageTitle from "../hooks/pageTitle.hook";
 import InfoSectionBox from "../components/InfoSectionBox";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
-
+import Footer from "../components/Footer";
+import Concordia from "../assets/concordia.png"
 const Contact = () => {
 
-    pageTitle("Contact Us");
-
+    pageTitle("Contact Us"); 
+    
+    const submitInquiry = () => {
+        alert("Successfully Submitted!")
+    }
     return (
         <Container>
             <Grid container justifyContent="space-between" sx={{marginTop: 5}}>
@@ -20,13 +24,15 @@ const Contact = () => {
                         />
                         <InfoSectionBox
                             h2Text="Our Office"
+                            imgSrc={Concordia}
+                            sx={{width: "100%"}}
                         />
                         <Grid item>
                             <List>
                                 <ListItem>
                                    <ListItemIcon><LocationOnIcon /></ListItemIcon>
                                     <ListItemText
-                                        primary="123 Sample St., Concordia Station Antarctica, 2009"
+                                        primary="123 Sample St., Concordia Station, Antarctica, 2009"
                                     />
                                 </ListItem>
                                 <ListItem>
@@ -35,7 +41,6 @@ const Contact = () => {
                                         primary="+1 312 1234" 
                                     />
                                 </ListItem>
-                                <ListItem></ListItem>
                             </List>
                         </Grid>
                     </Grid>
@@ -43,7 +48,7 @@ const Contact = () => {
                 <Grid item xs={12} md={6}>
                     <Box
                         component="form"
-                        
+                        onSubmit={submitInquiry}
                         autoComplete="off"
                         sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", boxShadow: "7px 13px 20px #484444", padding: 1, paddingTop: 3, borderRadius: 2 }}
                     >
@@ -67,6 +72,7 @@ const Contact = () => {
                             sx={{ marginBottom: 3 }}
                             fullWidth
                             required
+                            type="email"
                         />
 
                         <TextField
@@ -74,11 +80,13 @@ const Contact = () => {
                             label="Company"
                             sx={{ marginBottom: 3 }}
                             fullWidth
+                            required
                         />
 
                         <TextField
                             id="contact"
                             label="Contact"
+                            type="number"
                             fullWidth
                             required
                             sx={{ marginBottom: 3 }}
@@ -93,12 +101,14 @@ const Contact = () => {
                             sx={{ marginBottom: 3 }}
 
                         />
-                        <Button type="submit" variant="contained">
+                        <Button type="submit" variant="contained" >
                             Submit
                         </Button>
                     </Box>
                 </Grid>
             </Grid>
+            
+            <Footer />
         </Container>
     )
 }

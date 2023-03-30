@@ -5,6 +5,7 @@ import InfoSectionBox from "../components/InfoSectionBox";
 import WeTeam from "../assets/weteam.svg";
 import Mission from "../assets/mission.svg";
 import Vision from "../assets/vision.svg";
+import Footer from "../components/Footer";
 
 const About = () => {
 
@@ -30,6 +31,7 @@ const About = () => {
                 />
             </Grid>
 
+            <Footer />
         </Container>
     )
 }

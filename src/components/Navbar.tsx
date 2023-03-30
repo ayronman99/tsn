@@ -1,10 +1,10 @@
 import { useState, MouseEvent, useContext } from 'react';
 import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Avatar, Button, Tooltip, MenuItem, Switch } from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu';
-import Groups2Icon from '@mui/icons-material/Groups2';
 import { Link } from "react-router-dom";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { ThemeContextType } from '../@types/theme';
+import MenuIcon from '@mui/icons-material/Menu';
+import Groups2Icon from '@mui/icons-material/Groups2';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 
@@ -91,7 +91,7 @@ const Navbar = () => {
                         >
                             {pages.map((page) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Link to={`/${page.toLowerCase() !== "home" ? page.toLowerCase() : "tsn"}`}>
+                                    <Link to={`/tsn/${page.toLowerCase() !== "home" ? page.toLowerCase() : ""}`}>
                                         <Typography textAlign="center">{page}</Typography>
                                     </Link>
                                 </MenuItem>
@@ -123,7 +123,7 @@ const Navbar = () => {
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
-                            <Link to={`/${page.toLowerCase() !== "home" ? page.toLowerCase() : "tsn"}`} key={page} style={{ textDecoration: "none" }}>
+                            <Link to={`/tsn/${page.toLowerCase() !== "home" ? page.toLowerCase() : ""}`} key={page} style={{ textDecoration: "none" }}>
                                 <Button
                                     onClick={handleCloseNavMenu}
                                     sx={{ my: 2, color: 'white', display: 'block' }}

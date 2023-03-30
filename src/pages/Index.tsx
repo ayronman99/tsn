@@ -29,7 +29,7 @@ const Index = () => {
                         <Grid container spacing={3}>
                             {postsData?.map((postItems: PostsDataTypes) => (
                                 <Grid item xs={12} md={4} lg={3} xl={2} key={postItems.id} sx={{ width: "300px", marginBottom: "1rem" }}>
-                                    <Link to={`/p/${postItems.id}`}>
+                                    <Link to={`/tsn/p/${postItems.id}`}>
                                         <Card sx={{ height: "100%" }}>
                                             <CardMedia
                                                 component='img'

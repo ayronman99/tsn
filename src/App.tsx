@@ -10,16 +10,16 @@ import ThemeProviderMain from "./contexts/ThemeContext";
 function App() {
 
   return (
-    <ThemeProviderMain>      
-        <div className="App">
-          <Navbar />
-          <Routes>
-            <Route path="/tsn" element={<Index />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/p/:postId" element={<PostPage />} />
-          </Routes>
-        </div>      
+    <ThemeProviderMain>
+      <div className="App">
+        <Navbar />
+        <Routes>
+          <Route path="/tsn" element={<Index />} />
+          <Route path="/tsn/about" element={<About />} />
+          <Route path="/tsn/contact" element={<Contact />} />
+          <Route path="/tsn/p/:postId" element={<PostPage />} />
+        </Routes>
+      </div>
     </ThemeProviderMain>
 
   )
