@@ -10,7 +10,7 @@ const Footer = () => {
                 border: "3px solid grey"
             }} />
 
-            <Container id="footer" sx={{ backgroundColor: "#f2ebeb" }}>
+            <Container id="footer">
 
                 <Paper elevation={7}>
                     <Grid container padding={2}>

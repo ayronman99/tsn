@@ -6,6 +6,8 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import PostPage from "./pages/PostPage";
 import ThemeProviderMain from "./contexts/ThemeContext";
+import Error404 from "./pages/Error404";
+
 
 function App() {
 
@@ -18,6 +20,7 @@ function App() {
           <Route path="/tsn/about" element={<About />} />
           <Route path="/tsn/contact" element={<Contact />} />
           <Route path="/tsn/p/:postId" element={<PostPage />} />
+          <Route path="*" element={<Error404 />} />
         </Routes>
       </div>
     </ThemeProviderMain>
