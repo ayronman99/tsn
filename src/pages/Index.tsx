@@ -10,7 +10,7 @@ import { LoginContext } from "../contexts/LoginContext";
 
 const Index = () => {
 
-    const { isLoggedIn, isRememberMe } = useContext(LoginContext) as LoginType;
+    const { isLoggedIn } = useContext(LoginContext) as LoginType;
 
     const { data: postsData, isLoading } = useQuery<PostsDataTypes[], ErrorConstructor>({
         queryKey: ['postsData'],
