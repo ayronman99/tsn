@@ -22,10 +22,6 @@ const Login = (props: { userCreds: LoginCredentials; }) => {
         setPassInput(evt.target.value.toLocaleLowerCase());
     }
 
-
-    //Consoles here
-    console.log(userInput === userCreds.username, passInput === userCreds.password);
-
     const loginHandler = () => {
         if (userInput !== userCreds.username) return setValidUserCreds(false)
         if (passInput !== userCreds.password) return setValidUserCreds(false)
