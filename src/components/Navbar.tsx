@@ -16,7 +16,7 @@ const Navbar = () => {
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
     const { isDarkMode, changeTheme } = useContext(ThemeContext) as ThemeContextType;
-    const { setLogIn, setRememberMe } = useContext(LoginContext) as LoginType;
+    const { setLogIn, isLoggedIn } = useContext(LoginContext) as LoginType;
 
     const navigator = useNavigate();
 
@@ -145,11 +145,11 @@ const Navbar = () => {
                             </Link>
                         ))}
                     </Box>
-
-                    <Box sx={{ flexGrow: 0, display: "flex", alignItems: "center" }}>
-                        <Box sx={{ paddingX: 2, display: "flex", alignItems: "center" }}>
-                            {isDarkMode ? <DarkModeIcon /> : <LightModeIcon />}
+                    {isDarkMode ? <DarkModeIcon /> : <LightModeIcon />}
                             <Switch onClick={changeTheme} />
+                   {isLoggedIn ? ( <Box sx={{ flexGrow: 0, display: "flex", alignItems: "center" }}>
+                        <Box sx={{ paddingX: 2, display: "flex", alignItems: "center" }}>
+                         
                         </Box>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -178,7 +178,7 @@ const Navbar = () => {
                                 </MenuItem>
                             ))}
                         </Menu>
-                    </Box>
+                    </Box>): ""}
                 </Toolbar>
             </Container>
         </AppBar>

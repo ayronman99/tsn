@@ -9,7 +9,7 @@ const Login = (props: { userCreds: LoginCredentials; }) => {
     const { userCreds } = props;
     const { classes } = formStyles();
     const [isLoading, setIsLoading] = useState(true);
-    const { setLogIn, setRememberMe } = useContext(LoginContext) as LoginType;
+    const { isLoggedIn, setLogIn, setRememberMe } = useContext(LoginContext) as LoginType;
     const [checkRememberMe, setCheckRememberMe] = useState(false);
     const [userInput, setUserInput] = useState("");
     const [passInput, setPassInput] = useState("");
@@ -50,12 +50,12 @@ const Login = (props: { userCreds: LoginCredentials; }) => {
 
         function checkCookie() {
             let user = getCookie("isLoggedIn");
-            if (user != "") {
+            if (user != "" && user == "true") {
                 setLogIn(true)
             }
         }
-
-        checkCookie();
+        console.log(isLoggedIn)
+        checkCookie();  
         setIsLoading(false);
     }, [])
 
