@@ -1,9 +1,9 @@
-import { Backdrop, FormControl, FormControlLabel, Checkbox, Input, InputLabel, Paper, Typography, Avatar, Button, CircularProgress, FormHelperText } from "@mui/material"
-import LockIcon from "@mui/icons-material/Lock"
+import { Backdrop, FormControl, FormControlLabel, Checkbox, Input, InputLabel, Paper, Typography, Avatar, Button, CircularProgress, FormHelperText, Tooltip, IconButton } from "@mui/material"
 import { formStyles } from "../styles/LoginStyles";
 import { useContext, useEffect, useState } from "react";
 import { LoginContext, attachUserAuth } from "../contexts/LoginContext";
-
+import LockIcon from "@mui/icons-material/Lock"
+import InfoIcon from '@mui/icons-material/Info';
 
 const Login = (props: { userCreds: LoginCredentials; }) => {
     const { userCreds } = props;
@@ -16,10 +16,10 @@ const Login = (props: { userCreds: LoginCredentials; }) => {
     const [validUserCreds, setValidUserCreds] = useState<boolean>(true);
 
     const handleUserInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
-        setUserInput(evt.target.value);
+        setUserInput(evt.target.value.toLocaleLowerCase());
     }
     const handelPassInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
-        setPassInput(evt.target.value);
+        setPassInput(evt.target.value.toLocaleLowerCase());
     }
 
 
@@ -87,11 +87,17 @@ const Login = (props: { userCreds: LoginCredentials; }) => {
                     </Avatar>
                     <Typography variant="h5">Sign In</Typography>
 
-                    <form className={classes.form} onSubmit={evt => {
+                    <Tooltip title="Username: Marky, Password: Zuckerbergy">
+                        <IconButton>
+                            <InfoIcon fontSize="large" color="primary" sx={{ "&:hover": { color: "#808a83" }, transition: "all .25s ease-in" }} />
+                        </IconButton>
+                    </Tooltip>
+
+                    <form className={classes.form} style={{ marginTop: 0 }} onSubmit={evt => {
                         evt.preventDefault();
                         loginHandler();
                     }}>
-                        {validUserCreds ? ""  : <FormHelperText id="password-error-text" sx={{ color: "red", textAlign: "center", fontSize:"1.10rem" }}>Username or password is incorrect.</FormHelperText>}
+                        {validUserCreds ? "" : <FormHelperText id="password-error-text" sx={{ color: "red", textAlign: "center", fontSize: "1.10rem" }}>Username or password is incorrect.</FormHelperText>}
 
                         <FormControl margin="normal" required fullWidth>
                             <InputLabel htmlFor="username">Username</InputLabel>

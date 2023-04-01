@@ -38,9 +38,10 @@ const Navbar = () => {
     const LogOut = () => {
         document.cookie = "isLoggedIn=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         setLogIn(false);
-        setRememberMe(false);
         handleCloseUserMenu();
-        navigator("/tsn");
+        setTimeout(() => {
+            navigator("/tsn");
+        }, 500)
     }
 
     return (
@@ -172,7 +173,7 @@ const Navbar = () => {
                             onClose={handleCloseUserMenu}
                         >
                             {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={setting == "Logout" ? LogOut :  handleCloseUserMenu}>
+                                <MenuItem key={setting} onClick={setting === "Logout" ? LogOut :  handleCloseUserMenu}>
                                     <Typography textAlign="center">{setting}</Typography>
                                 </MenuItem>
                             ))}
