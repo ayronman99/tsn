@@ -1,15 +1,39 @@
-import { Backdrop, FormControl, FormControlLabel, Checkbox, Input, InputLabel, Paper, Typography, Avatar, Button, CircularProgress } from "@mui/material"
+import { Backdrop, FormControl, FormControlLabel, Checkbox, Input, InputLabel, Paper, Typography, Avatar, Button, CircularProgress, FormHelperText } from "@mui/material"
 import LockIcon from "@mui/icons-material/Lock"
 import { formStyles } from "../styles/LoginStyles";
 import { useContext, useEffect, useState } from "react";
-import { LoginContext } from "../contexts/LoginContext";
+import { LoginContext, attachUserAuth } from "../contexts/LoginContext";
 
 
-const Login = () => {
-    const [isLoading, setIsLoading] = useState(true);
-    const [checkRememberMe, setCheckRememberMe] = useState(false);
+const Login = (props: { userCreds: LoginCredentials; }) => {
+    const { userCreds } = props;
     const { classes } = formStyles();
+    const [isLoading, setIsLoading] = useState(true);
     const { setLogIn, setRememberMe } = useContext(LoginContext) as LoginType;
+    const [checkRememberMe, setCheckRememberMe] = useState(false);
+    const [userInput, setUserInput] = useState("");
+    const [passInput, setPassInput] = useState("");
+    const [validUserCreds, setValidUserCreds] = useState<boolean>(true);
+
+    const handleUserInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
+        setUserInput(evt.target.value);
+    }
+    const handelPassInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
+        setPassInput(evt.target.value);
+    }
+
+
+    //Consoles here
+    console.log(userInput === userCreds.username, passInput === userCreds.password);
+
+    const loginHandler = () => {
+        if (userInput !== userCreds.username) return setValidUserCreds(false)
+        if (passInput !== userCreds.password) return setValidUserCreds(false)
+        if (userInput === userCreds.username && passInput === userCreds.password) {
+            setValidUserCreds(true)
+            setLogIn(true)
+        }
+    }
 
     useEffect(() => {
 
@@ -54,8 +78,7 @@ const Login = () => {
             </Backdrop>
         )
     }
-    else
-    {
+    else {
         return (
             <main className={classes.main}>
                 <Paper className={classes.paper}>
@@ -66,15 +89,17 @@ const Login = () => {
 
                     <form className={classes.form} onSubmit={evt => {
                         evt.preventDefault();
-                        setLogIn(true)
+                        loginHandler();
                     }}>
+                        {validUserCreds ? ""  : <FormHelperText id="password-error-text" sx={{ color: "red", textAlign: "center", fontSize:"1.10rem" }}>Username or password is incorrect.</FormHelperText>}
+
                         <FormControl margin="normal" required fullWidth>
-                            <InputLabel htmlFor="email">Email Address</InputLabel>
-                            <Input id="email" name="email" autoFocus />
+                            <InputLabel htmlFor="username">Username</InputLabel>
+                            <Input id="username" name="username" onChange={handleUserInput} autoFocus />
                         </FormControl>
                         <FormControl margin="normal" required fullWidth>
                             <InputLabel htmlFor="password">Password</InputLabel>
-                            <Input id="password" name="password" autoFocus />
+                            <Input id="password" name="password" type="password" current-password="true" onChange={handelPassInput} autoFocus />
                         </FormControl>
                         <FormControlLabel
 
@@ -93,4 +118,4 @@ const Login = () => {
     }
 }
 
-export default Login;
+export default attachUserAuth(Login);

@@ -23,14 +23,14 @@ const Index = () => {
     const { classes } = indexStyles();
 
     useEffect(() => {
-        if (isRememberMe && isLoggedIn) {
+        if (isLoggedIn) {
             const d = new Date();
             d.setTime(d.getTime() + (30 * 24 * 60 * 60 * 1000));
             let expires = "expires=" + d.toUTCString();
             document.cookie = `isLoggedIn=true;${expires}`;
         }
     }, [])
-    
+
     return (
         <main className={classes.root}>
             <Paper className={classes.paper}>

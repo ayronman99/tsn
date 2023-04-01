@@ -13,7 +13,7 @@ import { useContext } from "react";
 
 function App() {
   const { isLoggedIn, isRememberMe } = useContext(LoginContext) as LoginType;
-  console.log(isLoggedIn, isRememberMe)
+
   return (
       <ThemeProviderMain>
         <div className="App">
