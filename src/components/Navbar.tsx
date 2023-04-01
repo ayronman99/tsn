@@ -1,13 +1,13 @@
 import { useState, MouseEvent, useContext } from 'react';
 import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Avatar, Button, Tooltip, MenuItem, Switch } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { ThemeContextType } from '../@types/theme';
 import MenuIcon from '@mui/icons-material/Menu';
 import Groups2Icon from '@mui/icons-material/Groups2';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
-
+import { LoginContext } from "../contexts/LoginContext";
 
 const pages = ['Home', 'About', 'Contact'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -16,6 +16,9 @@ const Navbar = () => {
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
     const { isDarkMode, changeTheme } = useContext(ThemeContext) as ThemeContextType;
+    const { setLogIn, setRememberMe } = useContext(LoginContext) as LoginType;
+
+    const navigator = useNavigate();
 
     const handleOpenNavMenu = (event: MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
@@ -31,6 +34,14 @@ const Navbar = () => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    const LogOut = () => {
+        document.cookie = "isLoggedIn=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        setLogIn(false);
+        setRememberMe(false);
+        handleCloseUserMenu();
+        navigator("/tsn");
+    }
 
     return (
         <AppBar position="static">
@@ -161,7 +172,7 @@ const Navbar = () => {
                             onClose={handleCloseUserMenu}
                         >
                             {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                <MenuItem key={setting} onClick={setting == "Logout" ? LogOut :  handleCloseUserMenu}>
                                     <Typography textAlign="center">{setting}</Typography>
                                 </MenuItem>
                             ))}
