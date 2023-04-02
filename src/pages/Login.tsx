@@ -4,12 +4,14 @@ import { useContext, useEffect, useState } from "react";
 import { LoginContext, attachUserAuth } from "../contexts/LoginContext";
 import LockIcon from "@mui/icons-material/Lock"
 import InfoIcon from '@mui/icons-material/Info';
+import cookieMonster from "../hooks/cookieMonster.hook";
 
 const Login = (props: { userCreds: LoginCredentials; }) => {
     const { userCreds } = props;
+    const { checkCookiePrelogin } = cookieMonster();
     const { classes } = formStyles();
     const [isLoading, setIsLoading] = useState(true);
-    const { isLoggedIn, setLogIn, setRememberMe } = useContext(LoginContext) as LoginType;
+    const { setLogIn, setRememberMe, isRememberMe } = useContext(LoginContext) as LoginType;
     const [checkRememberMe, setCheckRememberMe] = useState(false);
     const [userInput, setUserInput] = useState("");
     const [passInput, setPassInput] = useState("");
@@ -26,36 +28,28 @@ const Login = (props: { userCreds: LoginCredentials; }) => {
         if (userInput !== userCreds.username) return setValidUserCreds(false)
         if (passInput !== userCreds.password) return setValidUserCreds(false)
         if (userInput === userCreds.username && passInput === userCreds.password) {
+            const d = new Date();
+            if (isRememberMe) {
+
+                d.setTime(d.getTime() + (30 * 24 * 60 * 60 * 1000));
+                let expires = "expires=" + d.toUTCString();
+                document.cookie = `LongSession=true;${expires}`;
+
+            } else {
+
+                d.setTime(d.getTime() + (15 * 60 * 1000));
+                let expires = "expires=" + d.toUTCString();
+                document.cookie = `ShortSession=true;${expires}`;
+
+            }
             setValidUserCreds(true)
             setLogIn(true)
         }
     }
 
+
     useEffect(() => {
-
-        function getCookie(cookieNname: string) {
-            let name = cookieNname + "=";
-            let ca = document.cookie.split(';');
-            for (let i = 0; i < ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-            return "";
-        }
-
-        function checkCookie() {
-            let user = getCookie("isLoggedIn");
-            if (user != "" && user == "true") {
-                setLogIn(true)
-            }
-        }
-        console.log(isLoggedIn)
-        checkCookie();  
+        checkCookiePrelogin();
         setIsLoading(false);
     }, [])
 
@@ -109,7 +103,7 @@ const Login = (props: { userCreds: LoginCredentials; }) => {
                                 checked={checkRememberMe}
                                 onChange={monitorRememberMe}
                             />}
-                            label="Remember Me"
+                            label="Keep Me Logged In"
                         />
                         <Button className={classes.login} variant="contained" type="submit" color="primary" fullWidth
                         >Sign In</Button>

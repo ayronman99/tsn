@@ -7,10 +7,14 @@ import LoadingIndex from "../components/LoadingIndex";
 import pageTitle from "../hooks/pageTitle.hook";
 import { useContext, useEffect } from "react";
 import { LoginContext } from "../contexts/LoginContext";
+import cookieMonster from "../hooks/cookieMonster.hook";
+
+
 
 const Index = () => {
 
-    const { isLoggedIn } = useContext(LoginContext) as LoginType;
+    const { isLoggedIn, isRememberMe, setLogIn } = useContext(LoginContext) as LoginType;
+    const { checkCookiePostlogin } = cookieMonster();
 
     const { data: postsData, isLoading } = useQuery<PostsDataTypes[], ErrorConstructor>({
         queryKey: ['postsData'],
@@ -23,13 +27,8 @@ const Index = () => {
     const { classes } = indexStyles();
 
     useEffect(() => {
-        if (isLoggedIn) {
-            const d = new Date();
-            d.setTime(d.getTime() + (30 * 24 * 60 * 60 * 1000));
-            let expires = "expires=" + d.toUTCString();
-            document.cookie = `isLoggedIn=true;${expires}`;
-        }
-    }, [])
+        checkCookiePostlogin();
+    }, [isLoggedIn])
 
     return (
         <main className={classes.root}>

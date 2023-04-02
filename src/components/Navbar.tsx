@@ -16,7 +16,7 @@ const Navbar = () => {
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
     const { isDarkMode, changeTheme } = useContext(ThemeContext) as ThemeContextType;
-    const { setLogIn, isLoggedIn } = useContext(LoginContext) as LoginType;
+    const { setLogIn, setRememberMe, isLoggedIn } = useContext(LoginContext) as LoginType;
 
     const navigator = useNavigate();
 
@@ -36,8 +36,10 @@ const Navbar = () => {
     };
 
     const LogOut = () => {
-        document.cookie = "isLoggedIn=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "LongSession=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;" ;
+        document.cookie = "ShortSession=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;" ;
         setLogIn(false);
+        setRememberMe(false);
         handleCloseUserMenu();
         setTimeout(() => {
             navigator("/tsn");
