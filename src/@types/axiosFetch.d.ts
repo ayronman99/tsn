@@ -30,7 +30,10 @@ type CommentsDataTypes = {
 }
 
 interface PostsData {
-    postsData: PostsDataTypes[];
+    data: PostsDataTypes[];
+    limit?: number;
+    page?: number;
+    total?: number;
 }
 
 interface axiosFetchTypeProps<T> {
