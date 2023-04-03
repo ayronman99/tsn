@@ -36,6 +36,12 @@ interface PostsData {
     total?: number;
 }
 
+interface CommentsData {
+    data: CommentsDataTypes[];
+    limit?: number;
+    page?: number;
+    total?: number;
+}
 interface axiosFetchTypeProps<T> {
     url: string;
     method?: AxiosRequestConfig["method"];

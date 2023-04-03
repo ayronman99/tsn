@@ -24,7 +24,7 @@ const PostPage = () => {
         queryFn: () => axsFetchHandlerRQHook(`https://dummyapi.io/data/v1/post/${postId}`)
     })
 
-    const { data: commentsData } = useQuery<CommentsDataTypes[], ErrorConstructor>({
+    const { data: commentsData } = useQuery<CommentsData, ErrorConstructor>({
         enabled: idPostData?.id != null,
         queryKey: ['commentsData', `${postId}`],
         queryFn: () => axsFetchHandlerRQHook(`https://dummyapi.io/data/v1/post/${postId}/comment`)
@@ -75,8 +75,8 @@ const PostPage = () => {
 
                             <Box sx={{ marginTop: 1 }}>
                                 <List sx={{ width: "100%" }} >
-                                    {commentsData?.length !== 0 ? (
-                                        commentsData?.map((commentItems) => (
+                                    {commentsData?.data.length !== 0 ? (
+                                        commentsData?.data.map((commentItems) => (
                                             <ListItem alignItems="flex-start" key={commentItems?.id}>
                                                 <Card variant="outlined" sx={{ width: "100%", display: "flex" }}>
                                                     <CardHeader

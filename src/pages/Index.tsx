@@ -2,7 +2,6 @@ import { Typography, Paper, Card, CardContent, Grid, CardMedia, CardActions, But
 import axsFetchHandlerRQHook from "../hooks/axiosFetchRQ.hook";
 import { indexStyles } from "../styles/IndexStyles";
 import { Link } from "react-router-dom";
-// import { useQuery } from "@tanstack/react-query";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import LoadingIndex from "../components/LoadingIndex";
 import pageTitle from "../hooks/pageTitle.hook";
