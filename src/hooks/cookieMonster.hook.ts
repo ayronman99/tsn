@@ -4,11 +4,11 @@ import { LoginContext } from "../contexts/LoginContext";
 
 const cookieMonster = () => {
     const { setLogIn } = useContext(LoginContext) as LoginType;
-    let user: string | undefined;
     let shortSesh = getCookieName("ShortSession");
     let longSesh = getCookieName("LongSession");
+  
+    const seshValidator = Boolean(shortSesh) || Boolean(longSesh);
 
-    const seshValidator = shortSesh === "ShortSession" || longSesh === "LongSession";
     function getCookieName(name: string) {
         const value = "; " + document.cookie;
         const parts = value.split("; ").find((row) => row.startsWith(`${name}=`))?.split("=")[0];

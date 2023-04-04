@@ -12,27 +12,27 @@ import { LoginContext } from "./contexts/LoginContext";
 import { useContext } from "react";
 
 function App() {
-  const { isLoggedIn, isRememberMe } = useContext(LoginContext) as LoginType;
+  const { isLoggedIn } = useContext(LoginContext) as LoginType;
 
   return (
-      <ThemeProviderMain>
-        <div className="App">
-          <Navbar />
-          <Routes>
+    <ThemeProviderMain>
+      <div className="App">
+        <Navbar />
+        <Routes>
 
-            {isLoggedIn ?
-              <Route path="/tsn" element={<Index />} />
-              :
-              <Route path="/tsn" element={<Login />} />
-            }
+          {isLoggedIn ?
+            <Route path="/tsn" element={<Index />} />
+            :
+            <Route path="/tsn" element={<Login />} />
+          }
 
-            <Route path="/tsn/about" element={<About />} />
-            <Route path="/tsn/contact" element={<Contact />} />
-            <Route path="/tsn/p/:postId" element={<PostPage />} />
-            <Route path="*" element={<Error404 />} />
-          </Routes>
-        </div>
-      </ThemeProviderMain>
+          <Route path="/tsn/about" element={<About />} />
+          <Route path="/tsn/contact" element={<Contact />} />
+          <Route path="/tsn/p/:postId" element={<PostPage />} />
+          <Route path="*" element={<Error404 />} />
+        </Routes>
+      </div>
+    </ThemeProviderMain>
 
   )
 }
