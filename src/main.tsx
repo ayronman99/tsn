@@ -13,10 +13,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
-        
-    <LoginContextCont>
-        <App />
-    </LoginContextCont>
+        <LoginContextCont>
+          <App />
+        </LoginContextCont>
         <ReactQueryDevtools />
       </QueryClientProvider>
     </BrowserRouter>

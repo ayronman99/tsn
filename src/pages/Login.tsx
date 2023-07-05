@@ -1,9 +1,17 @@
-import { Backdrop, FormControl, FormControlLabel, Checkbox, Input, InputLabel, Paper, Typography, Avatar, Button, CircularProgress, FormHelperText, Tooltip, IconButton } from "@mui/material"
+import { Backdrop, FormControl, FormControlLabel, Checkbox, Input, InputLabel, Paper, Typography, Avatar, Button, CircularProgress, FormHelperText, Tooltip, IconButton, InputAdornment } from "@mui/material"
 import { formStyles } from "../styles/LoginStyles";
 import { useContext, useEffect, useState } from "react";
 import { LoginContext, attachUserAuth } from "../contexts/LoginContext";
+
+
+
+
 import LockIcon from "@mui/icons-material/Lock"
 import InfoIcon from '@mui/icons-material/Info';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+
+
 import cookieMonster from "../hooks/cookieMonster.hook";
 
 const Login = (props: { userCreds: LoginCredentials; }) => {
@@ -11,11 +19,14 @@ const Login = (props: { userCreds: LoginCredentials; }) => {
     const { checkCookiePrelogin } = cookieMonster();
     const { classes } = formStyles();
     const [isLoading, setIsLoading] = useState(true);
-    const { setLogIn, setRememberMe, isRememberMe } = useContext(LoginContext) as LoginType;
     const [checkRememberMe, setCheckRememberMe] = useState(false);
     const [userInput, setUserInput] = useState("");
     const [passInput, setPassInput] = useState("");
     const [validUserCreds, setValidUserCreds] = useState<boolean>(true);
+    const [showPassword, setShowPassword] = useState(false);
+
+    const { setLogIn, setRememberMe, isRememberMe } = useContext(LoginContext) as LoginType;
+
 
     const handleUserInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
         setUserInput(evt.target.value.toLocaleLowerCase());
@@ -47,6 +58,9 @@ const Login = (props: { userCreds: LoginCredentials; }) => {
         }
     }
 
+    const handleClickShowPassword = () => {
+        setShowPassword((show) => !show)
+    }
 
     useEffect(() => {
         checkCookiePrelogin();
@@ -95,7 +109,20 @@ const Login = (props: { userCreds: LoginCredentials; }) => {
                         </FormControl>
                         <FormControl margin="normal" required fullWidth>
                             <InputLabel htmlFor="password">Password</InputLabel>
-                            <Input id="password" name="password" type="password" current-password="true" onChange={handelPassInput} autoFocus />
+
+                            <Input id="password" name="password" type={showPassword ? 'text' : 'password'} current-password="true" onChange={handelPassInput} autoFocus
+                                endAdornment={
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            aria-label="toggle password visibility"
+                                            onClick={handleClickShowPassword}
+                                            edge="end"
+                                        >
+                                            {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                }
+                            />
                         </FormControl>
                         <FormControlLabel
 

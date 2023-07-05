@@ -15,7 +15,6 @@ export const LoginContextCont = ({children} : UAuthContextProp) => {
         <LoginContext.Provider value={{ isLoggedIn: loginState, setLogIn: setLogin, isRememberMe: rememberMe, setRememberMe }}>
             {children}
         </LoginContext.Provider>
-
     )
 }
 

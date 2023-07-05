@@ -36,14 +36,12 @@ const Navbar = () => {
     };
 
     const LogOut = () => {
-        document.cookie = "LongSession=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;" ;
-        document.cookie = "ShortSession=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;" ;
+        document.cookie = "LongSession=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "ShortSession=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=;";
         setLogIn(false);
         setRememberMe(false);
         handleCloseUserMenu();
-        setTimeout(() => {
-            navigator("/tsn");
-        }, 500)
+        setTimeout(() => { navigator("/tsn")}, 1000)
     }
 
     return (
