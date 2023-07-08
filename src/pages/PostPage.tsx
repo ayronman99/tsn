@@ -7,7 +7,7 @@ import pageTitle from "../hooks/pageTitle.hook";
 import PostContent from "../components/pages/PostPage/PostContent";
 
 //MUI BELOW
-import { Button, Grid } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import Container from "@mui/material/Container";
 import LoadingPost from "../components/LoadingPost";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -31,9 +31,11 @@ const PostPage = () => {
 
     return (
         <Container maxWidth="lg" sx={{ paddingY: 1, display: "flex", alignItems: "center", justifyContent: "flex-start", flexDirection: "column" }}>
-            <Button onClick={() => navigator(-1)} sx={{ position: "absolute", left: { xs: 0, md: 20 } }}>
-                <ArrowBackIcon />
-            </Button>
+            <Box component="div">
+                <Button onClick={() => navigator(-1)} sx={{ position: "absolute", left: { xs: 0, md: 20 } }}>
+                    <ArrowBackIcon />
+                </Button>
+            </Box>
             {isLoading ?
                 <LoadingPost />
                 :

@@ -19,7 +19,7 @@ export default function PostContent({
 
     const formattedDate = idPostData?.publishDate;
     return (
-        <Grid item xs={6} md={8} lg={12}>
+        <Grid item xs={10}>
             <Paper elevation={6}>
                 <Card sx={{ boxShadow: "none" }}>
                     <CardHeader
