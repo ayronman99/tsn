@@ -7,8 +7,7 @@ import pageTitle from "../hooks/pageTitle.hook";
 import PostContent from "../components/pages/PostPage/PostContent";
 
 //MUI BELOW
-import { Box, Button, Grid } from "@mui/material";
-import Container from "@mui/material/Container";
+import { Box, Button, Grid, Container } from "@mui/material";
 import LoadingPost from "../components/LoadingPost";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
@@ -18,13 +17,13 @@ const PostPage = () => {
 
     const { data: idPostData, isLoading } = useQuery<PostsDataTypes, ErrorConstructor>({
         queryKey: ['idPostData', `${postId}`],
-        queryFn: () => axsFetchHandlerRQHook(`https://dummyapi.io/data/v1/post/${postId}`)
+        queryFn: () => axsFetchHandlerRQHook("get", `https://dummyapi.io/data/v1/post/${postId}`)
     })
 
     const { data: commentsData } = useQuery<CommentsData, ErrorConstructor>({
         enabled: idPostData?.id != null,
         queryKey: ['commentsData', `${postId}`],
-        queryFn: () => axsFetchHandlerRQHook(`https://dummyapi.io/data/v1/post/${postId}/comment`)
+        queryFn: () => axsFetchHandlerRQHook("get", `https://dummyapi.io/data/v1/post/${postId}/comment`)
     });
 
     pageTitle(`${idPostData?.text !== undefined ? idPostData?.text : "Post Page"}`);
