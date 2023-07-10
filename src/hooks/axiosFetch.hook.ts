@@ -10,7 +10,6 @@ const axsFetchHandlerHook = <T> ({url, method = "get", headers = {}, data = {}, 
     useEffect(() => {
         setLoading(true);
         const fetchAxsPosts = async () => await axios({ url, method, headers, data })
-            // .then((resData) => console.log(resData.data.data))
             .then((resData) => { 
                 if (resData.data.data) return setFetchData(resData.data.data)
                 if (resData) return setFetchData(resData.data)

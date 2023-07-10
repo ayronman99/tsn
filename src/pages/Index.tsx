@@ -30,7 +30,7 @@ const Index = () => {
     } = useInfiniteQuery(
         ['postsData'],
         async ({ pageParam = 0 }) => {
-            return axsFetchHandlerRQHook(`https://dummyapi.io/data/v1/post?page=${pageParam}`);
+            return axsFetchHandlerRQHook("get", `https://dummyapi.io/data/v1/post?page=${pageParam}`);
         },
         {
             getNextPageParam: (page) => {

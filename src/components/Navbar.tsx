@@ -23,6 +23,7 @@ const Navbar = () => {
     const handleOpenNavMenu = (event: MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
     };
+    
     const handleOpenUserMenu = (event: MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
     };
@@ -41,7 +42,7 @@ const Navbar = () => {
         setLogIn(false);
         setRememberMe(false);
         handleCloseUserMenu();
-        setTimeout(() => { navigator("/tsn")}, 1000)
+        setTimeout(() => { navigator("/tsn") }, 1000)
     }
 
     return (
@@ -146,39 +147,39 @@ const Navbar = () => {
                         ))}
                     </Box>
                     {isDarkMode ? <DarkModeIcon /> : <LightModeIcon />}
-                            <Switch onClick={changeTheme} />
-                   {isLoggedIn ? ( <Box sx={{ flexGrow: 0, display: "flex", alignItems: "center" }}>
-                        <Box sx={{ paddingX: 2, display: "flex", alignItems: "center" }}>
-                         
-                        </Box>
-                        <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="https://play-lh.googleusercontent.com/5LIMaa7WTNy34bzdFhBETa2MRj7mFJZWb8gCn_uyxQkUvFx_uOFCeQjcK16c6WpBA3E" />
-                            </IconButton>
-                        </Tooltip>
-                        <Menu
-                            sx={{ mt: '45px' }}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={setting === "Logout" ? LogOut :  handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
-                    </Box>): ""}
+                    <Switch onClick={changeTheme} />
+                    {isLoggedIn ?
+                        (
+                            <Box sx={{ flexGrow: 0, display: "flex", alignItems: "center", paddingLeft: 2 }}>
+                             
+                                <Tooltip title="Open settings">
+                                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                        <Avatar alt="Remy Sharp" src="https://play-lh.googleusercontent.com/5LIMaa7WTNy34bzdFhBETa2MRj7mFJZWb8gCn_uyxQkUvFx_uOFCeQjcK16c6WpBA3E" />
+                                    </IconButton>
+                                </Tooltip>
+                                <Menu
+                                    sx={{ mt: '45px' }}
+                                    id="menu-appbar"
+                                    anchorEl={anchorElUser}
+                                    anchorOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    keepMounted
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    open={Boolean(anchorElUser)}
+                                    onClose={handleCloseUserMenu}
+                                >
+                                    {settings.map((setting) => (
+                                        <MenuItem key={setting} onClick={setting === "Logout" ? LogOut : handleCloseUserMenu}>
+                                            <Typography textAlign="center">{setting}</Typography>
+                                        </MenuItem>
+                                    ))}
+                                </Menu>
+                            </Box>) : ""}
                 </Toolbar>
             </Container>
         </AppBar>

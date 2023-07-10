@@ -18,7 +18,6 @@ export const indexStyles = makeStyles()((theme) => {
             }
         },
         paper: {
-            marginTop: theme.spacing(4),
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-around",
