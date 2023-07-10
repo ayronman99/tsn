@@ -105,9 +105,6 @@ export default function PostContent({
             </Paper>
         </Grid>
     )
-
-
-
 }
 
 const modalStyle = {
@@ -117,8 +114,8 @@ const modalStyle = {
     transform: 'translate(-50%, -50%)',
     width: 400,
     bgcolor: 'background.paper',
-    border: '2px solid #000',
-    borderRadius: "20px",
+    border: '1px solid #474d48',
+    borderRadius: "10px",
     boxShadow: 24,
     pt: 2,
     px: 4,
@@ -129,7 +126,6 @@ const PostOption = ({ postId }: PostOptions) => {
     const [openModal, setOpenModal] = React.useState<boolean>(false);
     const navigator = useNavigate();
     const queryClient = useQueryClient();
-    // queryFn: () => axsFetchHandlerRQHook("delete",`https://dummyapi.io/data/v1/post/${postId}`)
 
     const { mutate: deleteFunc } = useMutation<PostsDataTypes, ErrorConstructor>({
         mutationFn: () => axsFetchHandlerRQHook("delete", `https://dummyapi.io/data/v1/post/${postId}`),
@@ -183,7 +179,6 @@ const PostOption = ({ postId }: PostOptions) => {
                     open={Boolean(anchorOption)}
                     onClose={handleCloseOption}
                 >
-                    {/* <MenuItem onClick={() => deleteHandler(postId)}> */}
                     <MenuItem onClick={() => setOpenModal(!openModal)}>
                         <ListItemIcon>
                             <DeleteIcon fontSize="small" />
